@@ -1,9 +1,7 @@
 /**
  * SmartBot Widget Styles
- * Modern, responsive chat widget design
  */
 
-/* Root Variables */
 :root {
     --smartbot-brand-color: #4F46E5;
     --smartbot-bg-light: #F9FAFB;
@@ -15,12 +13,10 @@
     --smartbot-shadow-lg: 0 20px 40px rgba(0, 0, 0, 0.15);
 }
 
-/* Utility Classes */
 .smartbot-hidden {
     display: none !important;
 }
 
-/* Widget Container */
 #smartbot-widget {
     position: fixed;
     bottom: 20px;
@@ -29,7 +25,6 @@
     font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
 }
 
-/* Floating Action Button (FAB) */
 #smartbot-fab {
     width: 60px;
     height: 60px;
@@ -55,7 +50,6 @@
     height: 24px;
 }
 
-/* Chat Window */
 #smartbot-chat {
     width: 380px;
     height: 600px;
@@ -79,7 +73,6 @@
     }
 }
 
-/* Header */
 .smartbot-header {
     padding: 20px;
     color: white;
@@ -118,7 +111,6 @@
     background: rgba(255, 255, 255, 0.2);
 }
 
-/* Messages Container */
 .smartbot-messages {
     flex: 1;
     overflow-y: auto;
@@ -142,7 +134,6 @@
     border-radius: 3px;
 }
 
-/* Message Bubbles */
 .smartbot-message {
     display: flex;
     align-items: flex-end;
@@ -176,6 +167,7 @@
     font-size: 14px;
     line-height: 1.5;
     word-wrap: break-word;
+    white-space: pre-wrap;
 }
 
 .smartbot-bubble-user {
@@ -199,7 +191,6 @@
     flex-shrink: 0;
 }
 
-/* Typing Indicator */
 .smartbot-typing-indicator {
     display: flex;
     gap: 4px;
@@ -235,7 +226,6 @@
     }
 }
 
-/* Input Area */
 .smartbot-input-wrapper {
     padding: 16px;
     background: white;
@@ -252,6 +242,7 @@
     font-size: 14px;
     outline: none;
     transition: border-color 0.2s ease;
+    font-family: inherit;
 }
 
 #smartbot-input:focus {
@@ -282,7 +273,6 @@
     transform: scale(0.95);
 }
 
-/* Responsive Design */
 @media (max-width: 480px) {
     #smartbot-chat {
         width: calc(100vw - 20px);
@@ -296,7 +286,6 @@
     }
 }
 
-/* Dark Mode Support (Optional) */
 @media (prefers-color-scheme: dark) {
     #smartbot-chat {
         background: var(--smartbot-bg-dark);
