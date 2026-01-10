@@ -1,0 +1,184 @@
+/**
+ * SmartBot Admin Styles
+ * WordPress admin interface styling
+ */
+
+/* Admin Wrapper */
+.smartbot-admin-wrap {
+    max-width: 1200px;
+}
+
+/* Upgrade Banner */
+.smartbot-upgrade-banner {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+    padding: 30px;
+    border-radius: 8px;
+    margin: 20px 0;
+    box-shadow: 0 4px 12px rgba(102, 126, 234, 0.3);
+}
+
+.smartbot-upgrade-content h2 {
+    margin: 0 0 10px 0;
+    color: white;
+    font-size: 24px;
+}
+
+.smartbot-upgrade-content p {
+    margin: 0 0 20px 0;
+    font-size: 16px;
+    opacity: 0.95;
+}
+
+.smartbot-upgrade-banner .button-hero {
+    background: white;
+    color: #667eea;
+    border: none;
+    font-weight: 600;
+    transition: all 0.3s ease;
+}
+
+.smartbot-upgrade-banner .button-hero:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+}
+
+/* Tab Content */
+.smartbot-tab-content {
+    background: white;
+    padding: 30px;
+    margin-top: 0;
+    border: 1px solid #ccd0d4;
+    border-top: none;
+    box-shadow: 0 1px 1px rgba(0, 0, 0, 0.04);
+}
+
+/* License Section */
+.smartbot-license-section {
+    max-width: 800px;
+}
+
+.smartbot-license-status {
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    padding: 5px 12px;
+    border-radius: 4px;
+    font-weight: 600;
+    font-size: 13px;
+    margin-left: 10px;
+}
+
+.smartbot-license-active {
+    background: #d4edda;
+    color: #155724;
+}
+
+.smartbot-license-inactive {
+    background: #fff3cd;
+    color: #856404;
+}
+
+.smartbot-license-status .dashicons {
+    font-size: 16px;
+    width: 16px;
+    height: 16px;
+}
+
+/* License Benefits */
+.smartbot-license-benefits {
+    margin-top: 30px;
+    padding: 25px;
+    background: #f8f9fa;
+    border-left: 4px solid #4F46E5;
+    border-radius: 4px;
+}
+
+.smartbot-license-benefits h3 {
+    margin-top: 0;
+    color: #4F46E5;
+}
+
+.smartbot-license-benefits ul {
+    list-style: none;
+    padding: 0;
+    margin: 20px 0;
+}
+
+.smartbot-license-benefits li {
+    padding: 8px 0;
+    font-size: 15px;
+}
+
+/* Form Improvements */
+.form-table th {
+    padding: 20px 10px 20px 0;
+    width: 200px;
+}
+
+.form-table td {
+    padding: 20px 10px;
+}
+
+.form-table input[type="text"],
+.form-table input[type="password"],
+.form-table input[type="url"],
+.form-table select,
+.form-table textarea {
+    width: 100%;
+    max-width: 500px;
+}
+
+.form-table .description {
+    margin-top: 8px;
+    font-style: italic;
+}
+
+/* Color Picker */
+.wp-picker-container {
+    display: inline-block;
+}
+
+/* Loading States */
+.smartbot-loading {
+    opacity: 0.6;
+    pointer-events: none;
+}
+
+/* Success/Error Messages */
+.smartbot-message {
+    padding: 12px 20px;
+    border-radius: 4px;
+    margin: 15px 0;
+    display: inline-block;
+}
+
+.smartbot-message-success {
+    background: #d4edda;
+    color: #155724;
+    border: 1px solid #c3e6cb;
+}
+
+.smartbot-message-error {
+    background: #f8d7da;
+    color: #721c24;
+    border: 1px solid #f5c6cb;
+}
+
+/* Responsive */
+@media (max-width: 782px) {
+    .smartbot-upgrade-banner {
+        padding: 20px;
+    }
+    
+    .smartbot-tab-content {
+        padding: 20px;
+    }
+    
+    .form-table th,
+    .form-table td {
+        display: block;
+        width: 100%;
+        padding: 10px 0;
+    }
+}
