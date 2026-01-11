@@ -33,9 +33,18 @@
         fab.addEventListener('click', openChat);
         closeBtn.addEventListener('click', closeChat);
         sendBtn.addEventListener('click', sendMessage);
+        
         input.addEventListener('keypress', function(e) {
-            if (e.key === 'Enter') {
+            if (e.key === 'Enter' && !e.shiftKey) {
+                e.preventDefault();
                 sendMessage();
+            }
+        });
+        
+        // Prevent form submission on Enter
+        input.addEventListener('keydown', function(e) {
+            if (e.key === 'Enter' && !e.shiftKey) {
+                e.preventDefault();
             }
         });
         
@@ -53,9 +62,12 @@
         chat.classList.remove('smartbot-hidden');
         fab.classList.add('smartbot-hidden');
         
-        // Focus input
+        // Focus input after animation
         setTimeout(() => {
-            document.getElementById('smartbot-input').focus();
+            const input = document.getElementById('smartbot-input');
+            if (input) {
+                input.focus();
+            }
         }, 100);
     }
     
@@ -101,7 +113,9 @@
         })
         .then(response => {
             if (!response.ok) {
-                throw new Error('Network response was not ok');
+                return response.json().then(err => {
+                    throw new Error(err.message || 'Network response was not ok');
+                });
             }
             return response.json();
         })
@@ -117,7 +131,18 @@
         .catch(error => {
             hideTypingIndicator();
             console.error('SmartBot API error:', error);
-            addBotMessage('Sorry, I\'m having trouble connecting. Please try again later.');
+            
+            let errorMessage = 'Sorry, I\'m having trouble connecting. ';
+            
+            if (error.message.includes('API key')) {
+                errorMessage += 'Please make sure the API key is configured correctly in the admin panel.';
+            } else if (error.message.includes('rate limit')) {
+                errorMessage += 'Too many requests. Please wait a moment and try again.';
+            } else {
+                errorMessage += 'Please try again later.';
+            }
+            
+            addBotMessage(errorMessage);
         });
     }
     
@@ -137,7 +162,6 @@
         messageEl.appendChild(bubble);
         messagesContainer.appendChild(messageEl);
         
-        // Scroll to bottom
         scrollToBottom();
     }
     
@@ -155,6 +179,9 @@
             avatar.className = 'smartbot-avatar';
             avatar.src = smartbotConfig.avatar;
             avatar.alt = smartbotConfig.botName;
+            avatar.onerror = function() {
+                this.style.display = 'none';
+            };
             messageEl.appendChild(avatar);
         }
         
@@ -165,7 +192,6 @@
         messageEl.appendChild(bubble);
         messagesContainer.appendChild(messageEl);
         
-        // Scroll to bottom
         scrollToBottom();
     }
     
@@ -175,6 +201,12 @@
     function showTypingIndicator() {
         const messagesContainer = document.getElementById('smartbot-messages');
         
+        // Remove any existing typing indicator
+        const existingIndicator = document.getElementById('smartbot-typing');
+        if (existingIndicator) {
+            existingIndicator.remove();
+        }
+        
         const indicator = document.createElement('div');
         indicator.id = 'smartbot-typing';
         indicator.className = 'smartbot-message smartbot-message-bot';
@@ -182,7 +214,7 @@
         const bubble = document.createElement('div');
         bubble.className = 'smartbot-bubble smartbot-bubble-bot smartbot-typing-indicator';
         
-        // Create three dots
+        // Create three animated dots
         for (let i = 0; i < 3; i++) {
             const dot = document.createElement('span');
             dot.className = 'smartbot-typing-dot';
@@ -192,7 +224,6 @@
         indicator.appendChild(bubble);
         messagesContainer.appendChild(indicator);
         
-        // Scroll to bottom
         scrollToBottom();
     }
     
@@ -211,7 +242,11 @@
      */
     function scrollToBottom() {
         const messagesContainer = document.getElementById('smartbot-messages');
-        messagesContainer.scrollTop = messagesContainer.scrollHeight;
+        if (messagesContainer) {
+            setTimeout(() => {
+                messagesContainer.scrollTop = messagesContainer.scrollHeight;
+            }, 100);
+        }
     }
     
 })();
