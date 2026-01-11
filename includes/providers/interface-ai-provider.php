@@ -5,7 +5,6 @@
  * @package SmartBot_BYOK
  */
 
-// Prevent direct access
 if ( ! defined( 'ABSPATH' ) ) {
     exit;
 }
